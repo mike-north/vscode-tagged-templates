@@ -4,11 +4,7 @@
 	"description": "Syntax highlighting and subtle background tint for curated tagged template literals (json, html, sql, etc.).",
 	"version": "0.0.1",
 	"publisher": "local",
-	"author": {
-		"name": "Mike North",
-		"email": "mike@mike.works",
-		"url": "https://github.com/mike-north"
-	},
+	"license": "MIT",
 	"engines": {
 		"vscode": "^1.84.0"
 	},
