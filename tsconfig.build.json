@@ -1,0 +1,9 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"noEmit": false,
+		"types": ["vscode", "node"]
+	},
+	"include": ["extension.ts", "src/**/*.ts"],
+	"exclude": ["node_modules", "dist", ".vscode-test"]
+}

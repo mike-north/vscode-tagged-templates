@@ -1,0 +1,291 @@
+{
+	"scopeName": "tagged.templates.injection",
+	"injectionSelector": "L:source.ts, L:source.tsx, L:source.js, L:source.jsx",
+	"patterns": [
+		{ "include": "#tag-json" },
+		{ "include": "#tag-html" },
+		{ "include": "#tag-css" },
+		{ "include": "#tag-scss" },
+		{ "include": "#tag-sql" },
+		{ "include": "#tag-graphql" },
+		{ "include": "#tag-yaml" },
+		{ "include": "#tag-xml" },
+		{ "include": "#tag-ts" },
+		{ "include": "#tag-java" },
+		{ "include": "#tag-ruby" },
+		{ "include": "#tag-python" },
+		{ "include": "#tag-php" },
+		{ "include": "#tag-go" },
+		{ "include": "#tag-csharp" },
+		{ "include": "#tag-erb" },
+		{ "include": "#tag-ejs" },
+		{ "include": "#tag-handlebars" },
+		{ "include": "#tag-mustache" },
+		{ "include": "#tag-pug" },
+		{ "include": "#tag-twig" },
+		{ "include": "#tag-liquid" },
+		{ "include": "#tag-slim" },
+		{ "include": "#tag-haml" },
+		{ "include": "#tag-jinja" },
+		{ "include": "#tag-gemfile" },
+		{ "include": "#tag-md" },
+		{ "include": "#tag-gitignore" },
+		{ "include": "#tag-env" },
+		{ "include": "#tag-sh" }
+	],
+	"repository": {
+		"interpolation": {
+			"name": "meta.embedded.expression.ts",
+			"begin": "\\$\\{",
+			"beginCaptures": { "0": { "name": "punctuation.definition.template-expression.begin.ts" } },
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.definition.template-expression.end.ts" } },
+			"patterns": [
+				{ "include": "source.ts" },
+				{ "include": "source.tsx" },
+				{ "include": "source.js" },
+				{ "include": "source.jsx" }
+			]
+		},
+
+		"tag-json": {
+			"name": "meta.embedded.block.json.tagged",
+			"begin": "(?<=\\bjson)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.json.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.json" }]
+		},
+
+		"tag-html": {
+			"name": "meta.embedded.block.html.tagged",
+			"begin": "(?<=\\bhtml)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-css": {
+			"name": "meta.embedded.block.css.tagged",
+			"begin": "(?<=\\bcss)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.css.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.css" }]
+		},
+
+		"tag-scss": {
+			"name": "meta.embedded.block.scss.tagged",
+			"begin": "(?<=\\bscss)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.scss.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.scss" }]
+		},
+
+		"tag-sql": {
+			"name": "meta.embedded.block.sql.tagged",
+			"begin": "(?<=\\bsql)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.sql.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.sql" }]
+		},
+
+		"tag-graphql": {
+			"name": "meta.embedded.block.graphql.tagged",
+			"begin": "(?<=\\b(?:graphql|gql))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.graphql.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.graphql" }]
+		},
+
+		"tag-yaml": {
+			"name": "meta.embedded.block.yaml.tagged",
+			"begin": "(?<=\\b(?:yaml|yml))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.yaml.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.yaml" }]
+		},
+
+		"tag-xml": {
+			"name": "meta.embedded.block.xml.tagged",
+			"begin": "(?<=\\bxml)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.xml.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.xml" }]
+		},
+
+		"tag-ts": {
+			"name": "meta.embedded.block.ts.tagged",
+			"begin": "(?<=\\b(?:ts|typescript))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.ts.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.ts" }]
+		},
+
+		"tag-sh": {
+			"name": "meta.embedded.block.shell.tagged",
+			"begin": "(?<=\\b(?:sh|bash))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.shell.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.shell" }]
+		},
+
+		"tag-java": {
+			"name": "meta.embedded.block.java.tagged",
+			"begin": "(?<=\\bjava)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.java.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.java" }]
+		},
+
+		"tag-ruby": {
+			"name": "meta.embedded.block.ruby.tagged",
+			"begin": "(?<=\\b(?:ruby|rb))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.ruby.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.ruby" }]
+		},
+
+		"tag-python": {
+			"name": "meta.embedded.block.python.tagged",
+			"begin": "(?<=\\b(?:python|py))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.python.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.python" }]
+		},
+
+		"tag-php": {
+			"name": "meta.embedded.block.php.tagged",
+			"begin": "(?<=\\bphp)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.php.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.php" }]
+		},
+
+		"tag-go": {
+			"name": "meta.embedded.block.go.tagged",
+			"begin": "(?<=\\b(?:go|golang))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.go.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.go" }]
+		},
+
+		"tag-csharp": {
+			"name": "meta.embedded.block.csharp.tagged",
+			"begin": "(?<=\\b(?:csharp|cs))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.cs.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.cs" }]
+		},
+
+		"tag-erb": {
+			"name": "meta.embedded.block.erb.tagged",
+			"begin": "(?<=\\berb)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-ejs": {
+			"name": "meta.embedded.block.ejs.tagged",
+			"begin": "(?<=\\bejs)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-handlebars": {
+			"name": "meta.embedded.block.handlebars.tagged",
+			"begin": "(?<=\\b(?:handlebars|hbs))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-mustache": {
+			"name": "meta.embedded.block.mustache.tagged",
+			"begin": "(?<=\\bmustache)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-pug": {
+			"name": "meta.embedded.block.pug.tagged",
+			"begin": "(?<=\\b(?:pug|jade))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-twig": {
+			"name": "meta.embedded.block.twig.tagged",
+			"begin": "(?<=\\btwig)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-liquid": {
+			"name": "meta.embedded.block.liquid.tagged",
+			"begin": "(?<=\\bliquid)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-slim": {
+			"name": "meta.embedded.block.slim.tagged",
+			"begin": "(?<=\\bslim)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-haml": {
+			"name": "meta.embedded.block.haml.tagged",
+			"begin": "(?<=\\bhaml)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-jinja": {
+			"name": "meta.embedded.block.jinja.tagged",
+			"begin": "(?<=\\b(?:jinja|jinja2|njk|nunjucks))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.basic.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
+		},
+
+		"tag-gemfile": {
+			"name": "meta.embedded.block.gemfile.tagged",
+			"begin": "(?<=\\bgemfile)\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.ruby.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.ruby" }]
+		},
+
+		"tag-md": {
+			"name": "meta.embedded.block.markdown.tagged",
+			"begin": "(?<=\\b(?:md|markdown))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "text.html.markdown.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.markdown" }]
+		},
+
+		"tag-gitignore": {
+			"name": "meta.embedded.block.gitignore.tagged",
+			"begin": "(?<=\\b(?:gitignore|ignore))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.gitignore.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.gitignore" }]
+		},
+
+		"tag-env": {
+			"name": "meta.embedded.block.env.tagged",
+			"begin": "(?<=\\b(?:env|dotenv))\\s*`",
+			"end": "(?<!\\\\)`",
+			"contentName": "source.dotenv.embedded",
+			"patterns": [{ "include": "#interpolation" }, { "include": "source.dotenv" }]
+		}
+	}
+}

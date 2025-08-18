@@ -1,0 +1,138 @@
+{
+	"name": "@tagged-templates/vscode-extension",
+	"displayName": "Tagged Tinted Templates",
+	"description": "Syntax highlighting and subtle background tint for curated tagged template literals (json, html, sql, etc.).",
+	"version": "0.0.1",
+	"publisher": "local",
+	"author": {
+		"name": "Mike North",
+		"email": "mike@mike.works",
+		"url": "https://github.com/mike-north"
+	},
+	"engines": {
+		"vscode": "^1.84.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:typescript",
+		"onLanguage:typescriptreact",
+		"onLanguage:javascript",
+		"onLanguage:javascriptreact",
+		"onStartupFinished"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"grammars": [
+			{
+				"scopeName": "tagged.templates.injection",
+				"path": "./syntaxes/tagged-templates.tmLanguage.json",
+				"injectTo": [
+					"source.ts",
+					"source.tsx",
+					"source.js",
+					"source.jsx"
+				]
+			}
+		],
+		"colors": [
+			{
+				"id": "taggedTemplates.background",
+				"description": "Background overlay for tagged templates.",
+				"defaults": {
+					"dark": "#FFFFFF0D",
+					"light": "#00000014",
+					"highContrast": "#00000000"
+				}
+			},
+			{
+				"id": "taggedTemplates.border",
+				"description": "Optional border for tagged templates.",
+				"defaults": {
+					"dark": "#FFFFFF1F",
+					"light": "#00000026",
+					"highContrast": "#FFFFFF80"
+				}
+			}
+		],
+		"configuration": {
+			"title": "Tagged Templates",
+			"properties": {
+				"taggedTemplates.enabled": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable background decorations for tagged templates."
+				},
+				"taggedTemplates.tags": {
+					"type": "object",
+					"default": {
+						"json": "source.json",
+						"html": "text.html.basic",
+						"css": "source.css",
+						"scss": "source.scss",
+						"sql": "source.sql",
+						"graphql": "source.graphql",
+						"gql": "source.graphql",
+						"yaml": "source.yaml",
+						"yml": "source.yaml",
+						"xml": "text.xml",
+						"ts": "source.ts",
+						"typescript": "source.ts",
+						"sh": "source.shell",
+						"bash": "source.shell",
+						"java": "source.java",
+						"ruby": "source.ruby",
+						"rb": "source.ruby",
+						"python": "source.python",
+						"py": "source.python",
+						"php": "source.php",
+						"go": "source.go",
+						"golang": "source.go",
+						"csharp": "source.cs",
+						"cs": "source.cs",
+						"md": "text.html.markdown",
+						"markdown": "text.html.markdown",
+						"gitignore": "source.gitignore",
+						"ignore": "source.gitignore",
+						"env": "source.dotenv",
+						"dotenv": "source.dotenv"
+					},
+					"markdownDescription": "Advanced: map tag identifiers to embedded scopes. Defaults are intentionally opinionated. Editing this may break highlighting if scopes are wrong."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"format": "prettier --write .",
+		"build": "tsc -p tsconfig.build.json",
+		"lint": "eslint .",
+		"clean": "rimraf dist .vscode-test",
+		"compile": "tsc -p tsconfig.json",
+		"watch": "tsc -watch -p tsconfig.json",
+		"package": "vsce package",
+		"pretest": "pnpm run compile",
+		"test": "node ./dist/test/runTest.js",
+		"test:manual": "tsx ./tools/manual-test.mts"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.33.0",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^10.0.10",
+		"@types/node": "^22.16.0",
+		"@types/vscode": "^1.84.0",
+		"@vscode/test-electron": "^2.4.0",
+		"@vscode/vsce": "^2.15.0",
+		"eslint": "^9.33.0",
+		"fixturify": "^3.0.0",
+		"glob": "^11.0.3",
+		"jiti": "^2.5.1",
+		"mocha": "^10.7.3",
+		"prettier": "^3.6.2",
+		"rimraf": "^6.0.1",
+		"tsx": "^4.20.4",
+		"typescript": "^5.5.4",
+		"typescript-eslint": "^8.39.1"
+	}
+}

@@ -1,0 +1,12 @@
+**/.git
+**/.DS_Store
+**/node_modules/**
+**/.vscode/**
+**/out/test/**
+**/.github/**
+**/*.map
+**/*.ts
+!extension.js
+!out/**
+
+
