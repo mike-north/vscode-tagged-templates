@@ -1,5 +1,5 @@
 {
-	"name": "@tagged-templates/vscode-extension",
+	"name": "vscode-tagged-templates",
 	"displayName": "Tagged Tinted Templates",
 	"description": "Syntax highlighting and subtle background tint for curated tagged template literals (json, html, sql, etc.).",
 	"version": "0.0.1",
