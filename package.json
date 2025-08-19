@@ -4,6 +4,10 @@
 	"description": "Syntax highlighting and subtle background tint for curated tagged template literals (json, html, sql, etc.).",
 	"version": "0.0.1",
 	"publisher": "local",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mike-north/vscode-tinted-tagged-templates"
+	},
 	"license": "MIT",
 	"engines": {
 		"vscode": "^1.84.0"
