@@ -2,8 +2,8 @@
 	"name": "vscode-tagged-templates",
 	"displayName": "Tagged Tinted Templates",
 	"description": "Syntax highlighting and subtle background tint for curated tagged template literals (json, html, sql, etc.).",
-	"version": "0.0.1",
-	"publisher": "local",
+	"version": "0.0.2",
+	"publisher": "mike-north",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/mike-north/vscode-tinted-tagged-templates"
