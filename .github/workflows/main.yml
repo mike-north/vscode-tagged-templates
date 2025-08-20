@@ -45,16 +45,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      # DEBUGGING: Added store pruning and version logging to fix CI dependency issues
-      # TODO: Remove debugging steps when CI is stable
       - name: Install dependencies
-        run: |
-          echo "Node version: $(node --version)"
-          echo "pnpm version: $(pnpm --version)"
-          echo "Clearing pnpm store..."
-          pnpm store prune
-          echo "Installing dependencies..."
-          pnpm install --frozen-lockfile --prefer-offline
+        run: pnpm install --frozen-lockfile --prefer-offline
 
       - name: Run formatting check
         run: pnpm exec prettier --check .
@@ -88,8 +80,6 @@ jobs:
       - name: Run tests
         run: xvfb-run -a pnpm run test
 
-      # WORKAROUND (pnpm + vsce): avoid npm pruning by disabling dependency packaging
-      # TODO: If runtime deps are ever added, remove --no-dependencies and use npm for packaging
       - name: Package extension
         run: pnpm exec vsce package --no-dependencies
 
@@ -151,7 +141,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
 
-      # WORKAROUND (pnpm + vsce): disable dependency packaging during publish as well
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
