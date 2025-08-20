@@ -1,0 +1,73 @@
+name: Changesets
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  changesets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm run build && pnpm exec vsce publish --pat ${{ secrets.VSCE_PAT }}
+          title: "chore: version packages"
+          commit: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Create GitHub Release
+        if: steps.changesets.outputs.publishedPackages
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.changesets.outputs.publishedPackages }}
+          release_name: Release ${{ steps.changesets.outputs.publishedPackages }}
+          body: |
+            ## What's Changed
+            
+            This release includes the changes documented in the CHANGELOG.md file.
+            
+            ## Installation
+            
+            Install from the VS Code marketplace or download the VSIX file from the assets below.
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Assets
+        if: steps.changesets.outputs.publishedPackages
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./vscode-tagged-templates-*.vsix
+          asset_name: vscode-tagged-templates-${{ steps.changesets.outputs.publishedPackages }}.vsix
+          asset_content_type: application/octet-stream

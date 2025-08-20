@@ -115,9 +115,14 @@
 		"package": "vsce package",
 		"pretest": "pnpm run compile",
 		"test": "node ./dist/test/runTest.js",
-		"test:manual": "tsx ./tools/manual-test.mts"
+		"test:manual": "tsx ./tools/manual-test.mts",
+		"changeset": "changeset",
+		"version": "changeset version",
+		"release": "pnpm run build && changeset publish",
+		"release:manual": "pnpm run build && pnpm exec vsce publish"
 	},
 	"devDependencies": {
+		"@changesets/cli": "^2.29.6",
 		"@eslint/js": "^9.33.0",
 		"@types/glob": "^7.2.0",
 		"@types/mocha": "^10.0.10",
