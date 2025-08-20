@@ -1,0 +1,49 @@
+---
+alwaysApply: false
+---
+Cursor rules are always represented as `.mdc` files, and must be in the `.cursor/rules` directory.
+
+## Debugging Changes Rule
+
+When making debugging changes to the codebase, always add clear comments to mark these changes so they can be easily identified and removed later.
+
+### Guidelines for Debugging Comments:
+
+1. **Use a consistent prefix**: Start all debugging comments with `// DEBUG:` or `/* DEBUG: */`
+2. **Include context**: Explain what the debugging change is for and what it's trying to solve
+3. **Mark temporary code**: Clearly indicate if code is temporary and should be removed
+4. **Add TODO comments**: Include `// TODO: Remove after debugging` for easy searchability
+
+### Examples:
+
+```typescript
+// DEBUG: Temporarily logging user input to debug validation issues
+console.log('User input:', userInput);
+
+// DEBUG: Disabled error handling temporarily to see raw errors
+// TODO: Remove after debugging
+// try {
+//   processData();
+// } catch (error) {
+//   handleError(error);
+// }
+
+/* DEBUG: Added timeout to prevent infinite loops during development
+   TODO: Remove after debugging is complete */
+setTimeout(() => {
+  processData();
+}, 1000);
+```
+
+### When to Apply:
+- Adding console.log statements for debugging
+- Temporarily commenting out error handling
+- Adding timeouts or delays for testing
+- Modifying validation logic for debugging
+- Any other temporary changes made for debugging purposes
+
+### Search Patterns:
+Use these patterns to find and remove debugging code:
+- Search for: `// DEBUG:`
+- Search for: `/* DEBUG:`
+- Search for: `TODO: Remove after debugging`
