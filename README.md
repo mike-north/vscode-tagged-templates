@@ -268,21 +268,15 @@ pnpm release:manual # Build and publish manually (if needed)
 
 This project uses GitHub Actions for continuous integration and deployment:
 
-#### CI Workflow (`.github/workflows/ci.yml`)
+#### CI and Release Workflow (`.github/workflows/main.yml`)
 
 - Runs on push to `main`/`develop` branches and pull requests
-- Tests against Node.js 18.x and 20.x
+- Tests against Node.js 20.x
 - Runs linting, formatting checks, building, and tests
 - Packages the extension and uploads artifacts
 - Performs security audits
-
-#### Changesets Workflow (`.github/workflows/changesets.yml`)
-
-- Triggers on main branch pushes and pull requests
-- Automatically creates release pull requests when changesets are present
-- Publishes to VS Code Marketplace when changesets are merged
-- Creates GitHub releases with assets
-- Handles versioning and changelog generation automatically
+- **Optimized with caching**: VS Code downloads are cached to speed up test runs
+- **Automated releases**: When merged to main, automatically creates release PRs and publishes to VS Code Marketplace
 
 #### Required Secrets
 
