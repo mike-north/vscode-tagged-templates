@@ -11,7 +11,8 @@
 	},
 	"license": "MIT",
 	"engines": {
-		"vscode": "^1.84.0"
+		"vscode": "^1.84.0",
+		"node": ">=20.0.0"
 	},
 	"categories": [
 		"Programming Languages",
@@ -115,9 +116,22 @@
 		"package": "vsce package",
 		"pretest": "pnpm run compile",
 		"test": "node ./dist/test/runTest.js",
-		"test:manual": "tsx ./tools/manual-test.mts"
+		"test:manual": "tsx ./tools/manual-test.mts",
+		"changeset": "changeset",
+		"version": "changeset version",
+		"release": "pnpm run build && changeset publish",
+		"release:manual": "pnpm run build && pnpm exec vsce publish",
+		"prepare": "husky",
+		"lint-staged": "lint-staged"
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,json,md}": [
+			"prettier --write",
+			"eslint --fix"
+		]
 	},
 	"devDependencies": {
+		"@changesets/cli": "^2.29.6",
 		"@eslint/js": "^9.33.0",
 		"@types/glob": "^7.2.0",
 		"@types/mocha": "^10.0.10",
@@ -128,7 +142,9 @@
 		"eslint": "^9.33.0",
 		"fixturify": "^3.0.0",
 		"glob": "^11.0.3",
+		"husky": "^9.1.7",
 		"jiti": "^2.5.1",
+		"lint-staged": "^16.1.5",
 		"mocha": "^10.7.3",
 		"prettier": "^3.6.2",
 		"rimraf": "^6.0.1",

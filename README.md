@@ -95,9 +95,12 @@ This extension works seamlessly with libraries that do more than simple passthro
 import gql from 'graphql-tag'
 
 const query = gql`
-  query User($id: ID!) {
-    user(id: $id) { id name }
-  }
+	query User($id: ID!) {
+		user(id: $id) {
+			id
+			name
+		}
+	}
 `
 ```
 
@@ -110,11 +113,86 @@ const query = gql`
 
 ## Color customization
 
-Override via `workbench.colorCustomizations`:
+The extension now supports per-language color customizations! Each tagged template type can have its own background and border colors.
+
+### Per-language colors
+
+Override specific language colors via `workbench.colorCustomizations`:
 
 ```json
-"taggedTemplates.background": "#FFFFFF14",
-"taggedTemplates.border": "#FFFFFF33"
+{
+	"workbench.colorCustomizations": {
+		// JSON tagged templates
+		"taggedTemplates.json.background": "#FFFFFF14",
+		"taggedTemplates.json.border": "#FFFFFF33",
+
+		// HTML tagged templates
+		"taggedTemplates.html.background": "#FF6B3514",
+		"taggedTemplates.html.border": "#FF6B3533",
+
+		// SQL tagged templates
+		"taggedTemplates.sql.background": "#4FC3F714",
+		"taggedTemplates.sql.border": "#4FC3F733",
+
+		// CSS tagged templates
+		"taggedTemplates.css.background": "#FF980014",
+		"taggedTemplates.css.border": "#FF980033",
+
+		// GraphQL tagged templates
+		"taggedTemplates.graphql.background": "#E1009814",
+		"taggedTemplates.graphql.border": "#E1009833",
+
+		// YAML tagged templates
+		"taggedTemplates.yaml.background": "#FFEB3B14",
+		"taggedTemplates.yaml.border": "#FFEB3B33",
+
+		// TypeScript tagged templates
+		"taggedTemplates.ts.background": "#3178C614",
+		"taggedTemplates.ts.border": "#3178C633",
+
+		// Shell tagged templates
+		"taggedTemplates.shell.background": "#4CAF5014",
+		"taggedTemplates.shell.border": "#4CAF5033",
+
+		// Default for other languages
+		"taggedTemplates.default.background": "#FFFFFF14",
+		"taggedTemplates.default.border": "#FFFFFF33"
+	}
+}
+```
+
+### Supported languages with distinct colors
+
+- **JSON**: White/neutral tint
+- **HTML**: Orange/brown tint
+- **CSS**: Orange tint
+- **SQL**: Blue tint
+- **GraphQL**: Purple tint
+- **YAML**: Yellow tint
+- **TypeScript**: Blue tint
+- **Shell**: Green tint
+- **XML**: Red/orange tint
+- **Java**: Red tint
+- **Ruby**: Red tint
+- **Python**: Blue tint
+- **PHP**: Purple tint
+- **Go**: Blue tint
+- **C#**: Green tint
+- **Markdown**: Black/white tint
+- **Gitignore**: Red tint
+- **Environment variables**: Brown tint
+
+### Legacy support
+
+For backward compatibility, you can still use the old global colors (they will apply to the default category):
+
+```json
+{
+	"workbench.colorCustomizations": {
+		"taggedTemplates.background": "#FFFFFF14",
+		"taggedTemplates.border": "#FFFFFF33"
+	}
+}
 ```
 
 ## Notes
@@ -127,7 +205,7 @@ Override via `workbench.colorCustomizations`:
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 20+
 - pnpm
 
 ### Setup
@@ -144,25 +222,64 @@ pnpm run test       # Run tests
 pnpm run lint       # Run ESLint
 pnpm run format     # Format code with Prettier
 pnpm run package    # Package extension as .vsix
+pnpm lint-staged    # Run lint-staged (auto-formats staged files)
+```
+
+### Pre-commit Hooks
+
+This project uses [Husky](https://typicode.github.io/husky/) with pre-commit hooks to ensure code quality:
+
+- **Auto-formatting**: All staged files are automatically formatted with Prettier
+- **Linting**: ESLint automatically fixes issues in staged files
+- **Supported files**: `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.md`
+
+The hooks run automatically when you commit. If formatting or linting fails, the commit will be blocked until issues are resolved.
+
+### Versioning and Releases
+
+This project uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs automatically.
+
+#### Making Changes
+
+When you make changes that should be included in a release:
+
+1. **Create a changeset**: Run `pnpm changeset` to create a new changeset file
+2. **Select the type of change**: Choose from `major`, `minor`, or `patch`
+3. **Write a description**: Describe what changed and why
+4. **Commit the changeset**: The changeset file will be committed automatically
+
+#### Releasing
+
+To create a new release:
+
+1. **Version packages**: Run `pnpm version` to update versions and generate changelog
+2. **Review changes**: Check the generated changelog and version updates
+3. **Publish**: The GitHub Actions workflow will automatically publish when changesets are merged to main
+
+#### Changeset Commands
+
+```bash
+pnpm changeset    # Create a new changeset
+pnpm version      # Update versions and generate changelog (manual)
+pnpm release:manual # Build and publish manually (if needed)
 ```
 
 ### CI/CD
 
 This project uses GitHub Actions for continuous integration and deployment:
 
-#### CI Workflow (`.github/workflows/ci.yml`)
+#### CI and Release Workflow (`.github/workflows/main.yml`)
+
 - Runs on push to `main`/`develop` branches and pull requests
-- Tests against Node.js 18.x and 20.x
+- Tests against Node.js 20.x
 - Runs linting, formatting checks, building, and tests
 - Packages the extension and uploads artifacts
 - Performs security audits
-
-#### Release Workflow (`.github/workflows/release.yml`)
-- Triggers on version tags (e.g., `v1.0.0`)
-- Builds and tests the extension
-- Publishes to VS Code Marketplace
-- Creates GitHub release with assets
+- **Optimized with caching**: VS Code downloads are cached to speed up test runs
+- **Automated releases**: When merged to main, automatically creates release PRs and publishes to VS Code Marketplace
 
 #### Required Secrets
+
 To enable publishing to the VS Code Marketplace, add the following secret to your GitHub repository:
+
 - `VSCE_PAT`: Your VS Code Extension Personal Access Token from https://dev.azure.com

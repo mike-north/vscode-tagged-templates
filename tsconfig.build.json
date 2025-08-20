@@ -5,5 +5,5 @@
 		"types": ["vscode", "node"]
 	},
 	"include": ["extension.ts", "src/**/*.ts"],
-	"exclude": ["node_modules", "dist", ".vscode-test"]
+	"exclude": ["node_modules", "dist", ".vscode-test", "test"]
 }
