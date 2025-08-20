@@ -38,7 +38,7 @@ setTimeout(() => {
 ### When to Apply:
 - Adding console.log statements for debugging
 - Temporarily commenting out error handling
-- Adding timeouts or delays for testing
+- Adding timeouts or delays for testingl
 - Modifying validation logic for debugging
 - Any other temporary changes made for debugging purposes
 
