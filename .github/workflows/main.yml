@@ -1,4 +1,4 @@
-name: "CI & Release"
+name: CI and Release
 
 on:
   push:
@@ -67,7 +67,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: vscode-extension-${{ matrix.node-version }}
-        path: *.vsix
+        path: "*.vsix"
         retention-days: 7
 
   security:
