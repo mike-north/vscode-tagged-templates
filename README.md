@@ -205,7 +205,7 @@ For backward compatibility, you can still use the old global colors (they will a
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+ 
 - pnpm
 
 ### Setup
