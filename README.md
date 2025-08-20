@@ -117,3 +117,47 @@ Override via `workbench.colorCustomizations`:
 - Only simple `identifier` followed by backtick is supported in MVP.
 - Interpolations `${...}` are delegated back to the host language for proper highlighting.
 - This extension does not evaluate, lint, or validate the embedded content; it only affects editor highlighting and tinting.
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+ 
+- pnpm
+
+### Setup
+
+```bash
+pnpm install
+```
+
+### Development Commands
+
+```bash
+pnpm run build      # Build the extension
+pnpm run test       # Run tests
+pnpm run lint       # Run ESLint
+pnpm run format     # Format code with Prettier
+pnpm run package    # Package extension as .vsix
+```
+
+### CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+#### CI Workflow (`.github/workflows/ci.yml`)
+- Runs on push to `main`/`develop` branches and pull requests
+- Tests against Node.js 18.x and 20.x
+- Runs linting, formatting checks, building, and tests
+- Packages the extension and uploads artifacts
+- Performs security audits
+
+#### Release Workflow (`.github/workflows/release.yml`)
+- Triggers on version tags (e.g., `v1.0.0`)
+- Builds and tests the extension
+- Publishes to VS Code Marketplace
+- Creates GitHub release with assets
+
+#### Required Secrets
+To enable publishing to the VS Code Marketplace, add the following secret to your GitHub repository:
+- `VSCE_PAT`: Your VS Code Extension Personal Access Token from https://dev.azure.com
