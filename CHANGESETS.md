@@ -5,6 +5,7 @@ This project uses [Changesets](https://github.com/changesets/changesets) to mana
 ## What is Changesets?
 
 Changesets is a tool that helps manage versioning and changelogs for packages. It's particularly useful for:
+
 - Automatically bumping package versions based on semantic versioning
 - Generating changelogs from human-readable descriptions
 - Managing releases in a consistent way
@@ -27,6 +28,7 @@ pnpm changeset
 ```
 
 This will:
+
 1. Ask you to select the type of change (major, minor, patch)
 2. Ask for a summary of the changes
 3. Create a changeset file in the `.changeset` directory
@@ -45,11 +47,13 @@ Choose the appropriate semantic versioning bump:
 Write a clear, concise description of what changed. This will appear in the changelog.
 
 **Good examples:**
+
 - "Add support for Python tagged templates"
 - "Fix JSON syntax highlighting in nested objects"
 - "Update VS Code engine requirement to 1.84.0"
 
 **Avoid:**
+
 - "Fix stuff"
 - "Update things"
 - "Various improvements"
@@ -69,6 +73,7 @@ The project includes a GitHub Actions workflow (`.github/workflows/changesets.ym
 If you need to release manually:
 
 1. **Version packages**: Update versions and generate changelog
+
    ```bash
    pnpm version
    ```
@@ -104,12 +109,12 @@ The Changesets configuration is in `.changeset/config.json`:
 
 ```json
 {
-  "changelog": "@changesets/cli/changelog",
-  "commit": true,
-  "access": "public",
-  "baseBranch": "main",
-  "updateInternalDependencies": "patch",
-  "ignore": []
+	"changelog": "@changesets/cli/changelog",
+	"commit": true,
+	"access": "public",
+	"baseBranch": "main",
+	"updateInternalDependencies": "patch",
+	"ignore": []
 }
 ```
 
@@ -131,6 +136,7 @@ The Changesets configuration is in `.changeset/config.json`:
 ### When to Create Changesets
 
 Create changesets for:
+
 - ✅ New features
 - ✅ Bug fixes
 - ✅ Breaking changes
@@ -138,6 +144,7 @@ Create changesets for:
 - ✅ Performance improvements
 
 Don't create changesets for:
+
 - ❌ Typo fixes
 - ❌ Minor formatting changes
 - ❌ Test-only changes
@@ -181,21 +188,25 @@ Add support for Python tagged templates with syntax highlighting and background 
 ## [0.2.0] - 2024-01-15
 
 ### Added
+
 - Add support for Python tagged templates with syntax highlighting and background tinting
 - New configuration option for custom tag mappings
 
 ### Fixed
+
 - Fix JSON syntax highlighting in nested template literals
 ```
 
 ## Integration with VS Code Extension Publishing
 
 The automated workflow:
+
 1. Builds the extension using `pnpm run build`
 2. Uses the Changesets action to handle versioning and publishing
 3. Uses the `VSCE_PAT` secret to publish to the VS Code Marketplace
 4. Creates GitHub releases with assets automatically
 
 Make sure you have the following GitHub Secrets configured:
+
 - `VSCE_PAT`: Your VS Code Extension Personal Access Token
 - `NPM_TOKEN`: (Optional) For publishing to npm if needed

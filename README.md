@@ -95,9 +95,12 @@ This extension works seamlessly with libraries that do more than simple passthro
 import gql from 'graphql-tag'
 
 const query = gql`
-  query User($id: ID!) {
-    user(id: $id) { id name }
-  }
+	query User($id: ID!) {
+		user(id: $id) {
+			id
+			name
+		}
+	}
 `
 ```
 
@@ -118,43 +121,43 @@ Override specific language colors via `workbench.colorCustomizations`:
 
 ```json
 {
-  "workbench.colorCustomizations": {
-    // JSON tagged templates
-    "taggedTemplates.json.background": "#FFFFFF14",
-    "taggedTemplates.json.border": "#FFFFFF33",
-    
-    // HTML tagged templates
-    "taggedTemplates.html.background": "#FF6B3514",
-    "taggedTemplates.html.border": "#FF6B3533",
-    
-    // SQL tagged templates
-    "taggedTemplates.sql.background": "#4FC3F714",
-    "taggedTemplates.sql.border": "#4FC3F733",
-    
-    // CSS tagged templates
-    "taggedTemplates.css.background": "#FF980014",
-    "taggedTemplates.css.border": "#FF980033",
-    
-    // GraphQL tagged templates
-    "taggedTemplates.graphql.background": "#E1009814",
-    "taggedTemplates.graphql.border": "#E1009833",
-    
-    // YAML tagged templates
-    "taggedTemplates.yaml.background": "#FFEB3B14",
-    "taggedTemplates.yaml.border": "#FFEB3B33",
-    
-    // TypeScript tagged templates
-    "taggedTemplates.ts.background": "#3178C614",
-    "taggedTemplates.ts.border": "#3178C633",
-    
-    // Shell tagged templates
-    "taggedTemplates.shell.background": "#4CAF5014",
-    "taggedTemplates.shell.border": "#4CAF5033",
-    
-    // Default for other languages
-    "taggedTemplates.default.background": "#FFFFFF14",
-    "taggedTemplates.default.border": "#FFFFFF33"
-  }
+	"workbench.colorCustomizations": {
+		// JSON tagged templates
+		"taggedTemplates.json.background": "#FFFFFF14",
+		"taggedTemplates.json.border": "#FFFFFF33",
+
+		// HTML tagged templates
+		"taggedTemplates.html.background": "#FF6B3514",
+		"taggedTemplates.html.border": "#FF6B3533",
+
+		// SQL tagged templates
+		"taggedTemplates.sql.background": "#4FC3F714",
+		"taggedTemplates.sql.border": "#4FC3F733",
+
+		// CSS tagged templates
+		"taggedTemplates.css.background": "#FF980014",
+		"taggedTemplates.css.border": "#FF980033",
+
+		// GraphQL tagged templates
+		"taggedTemplates.graphql.background": "#E1009814",
+		"taggedTemplates.graphql.border": "#E1009833",
+
+		// YAML tagged templates
+		"taggedTemplates.yaml.background": "#FFEB3B14",
+		"taggedTemplates.yaml.border": "#FFEB3B33",
+
+		// TypeScript tagged templates
+		"taggedTemplates.ts.background": "#3178C614",
+		"taggedTemplates.ts.border": "#3178C633",
+
+		// Shell tagged templates
+		"taggedTemplates.shell.background": "#4CAF5014",
+		"taggedTemplates.shell.border": "#4CAF5033",
+
+		// Default for other languages
+		"taggedTemplates.default.background": "#FFFFFF14",
+		"taggedTemplates.default.border": "#FFFFFF33"
+	}
 }
 ```
 
@@ -185,10 +188,10 @@ For backward compatibility, you can still use the old global colors (they will a
 
 ```json
 {
-  "workbench.colorCustomizations": {
-    "taggedTemplates.background": "#FFFFFF14",
-    "taggedTemplates.border": "#FFFFFF33"
-  }
+	"workbench.colorCustomizations": {
+		"taggedTemplates.background": "#FFFFFF14",
+		"taggedTemplates.border": "#FFFFFF33"
+	}
 }
 ```
 
@@ -202,7 +205,7 @@ For backward compatibility, you can still use the old global colors (they will a
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm
 
 ### Setup
@@ -255,6 +258,7 @@ pnpm release:manual # Build and publish manually (if needed)
 This project uses GitHub Actions for continuous integration and deployment:
 
 #### CI Workflow (`.github/workflows/ci.yml`)
+
 - Runs on push to `main`/`develop` branches and pull requests
 - Tests against Node.js 18.x and 20.x
 - Runs linting, formatting checks, building, and tests
@@ -262,6 +266,7 @@ This project uses GitHub Actions for continuous integration and deployment:
 - Performs security audits
 
 #### Changesets Workflow (`.github/workflows/changesets.yml`)
+
 - Triggers on main branch pushes and pull requests
 - Automatically creates release pull requests when changesets are present
 - Publishes to VS Code Marketplace when changesets are merged
@@ -269,5 +274,7 @@ This project uses GitHub Actions for continuous integration and deployment:
 - Handles versioning and changelog generation automatically
 
 #### Required Secrets
+
 To enable publishing to the VS Code Marketplace, add the following secret to your GitHub repository:
+
 - `VSCE_PAT`: Your VS Code Extension Personal Access Token from https://dev.azure.com
