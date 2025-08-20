@@ -1,8 +1,13 @@
-# Tagged Templates
+<div align="center">
+  <img src="media/icon.png" alt="Tagged Templates Icon" width="128" height="128">
+  <h1>Tagged Templates</h1>
+</div>
 
 Syntax highlighting and subtle background tint for curated tagged template literals in JS/TS.
 
 Editor-only: This extension only provides syntax highlighting and tinting in the editor. It never runs, evaluates, parses, or transforms your tagged template literals at runtime.
+
+![Screenshot showing tagged template literals with syntax highlighting and background tinting](media/screemshot.png)
 
 ## What it does
 
