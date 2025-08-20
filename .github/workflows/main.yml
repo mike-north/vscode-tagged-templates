@@ -45,11 +45,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      # DEBUGGING: Added store pruning and version logging to fix CI dependency issues
+      # TODO: Remove debugging steps when CI is stable
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --prefer-offline
+        run: |
+          echo "Node version: $(node --version)"
+          echo "pnpm version: $(pnpm --version)"
+          echo "Clearing pnpm store..."
+          pnpm store prune
+          echo "Installing dependencies..."
+          pnpm install --frozen-lockfile --prefer-offline
 
       - name: Run formatting check
         run: pnpm exec prettier --check .
+
+      - name: Run linting
+        run: pnpm run lint
 
       - name: Build project
         run: pnpm run build
