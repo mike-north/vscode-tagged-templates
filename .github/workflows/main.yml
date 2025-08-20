@@ -58,7 +58,7 @@ jobs:
         run: pnpm run build
 
       - name: Run tests
-        run: pnpm run test
+        run: xvfb-run -a pnpm run test
 
       - name: Package extension
         run: pnpm run package
