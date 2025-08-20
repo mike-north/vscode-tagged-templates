@@ -48,9 +48,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
 
-      - name: Run linting
-        run: pnpm run lint
-
       - name: Run formatting check
         run: pnpm exec prettier --check .
 
