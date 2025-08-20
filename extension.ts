@@ -1,18 +1,16 @@
 import * as vscode from 'vscode'
 import { computeTaggedTemplateRanges } from './src/ranges.js'
-import { createDecorationType, applyDecorations, disposeDecorationType } from './src/decoration.js'
+import { applyDecorations, disposeAllDecorationTypes } from './src/decoration.js'
 import { isExtensionEnabled } from './src/config'
 
 let debounceTimer: NodeJS.Timeout | undefined
 
 export function activate(ctx: vscode.ExtensionContext) {
-	let decoration = createDecorationType()
-
 	function refresh(editor?: vscode.TextEditor) {
 		const activeEditor = editor ?? vscode.window.activeTextEditor
 		if (!activeEditor) return
 		if (!isExtensionEnabled()) {
-			applyDecorations(activeEditor, decoration, [])
+			applyDecorations(activeEditor, [])
 			return
 		}
 
@@ -20,8 +18,8 @@ export function activate(ctx: vscode.ExtensionContext) {
 
 		if (!allowedLanguageIds.has(activeEditor.document.languageId)) return
 
-		const ranges = computeTaggedTemplateRanges(activeEditor.document)
-		applyDecorations(activeEditor, decoration, ranges)
+		const taggedRanges = computeTaggedTemplateRanges(activeEditor.document)
+		applyDecorations(activeEditor, taggedRanges)
 	}
 
 	function triggerRefresh(editor?: vscode.TextEditor) {
@@ -38,8 +36,7 @@ export function activate(ctx: vscode.ExtensionContext) {
 		}),
 		vscode.window.onDidChangeVisibleTextEditors(() => refresh()),
 		vscode.window.onDidChangeActiveColorTheme(() => {
-			disposeDecorationType(decoration)
-			decoration = createDecorationType()
+			disposeAllDecorationTypes()
 			refresh()
 		}),
 		vscode.workspace.onDidChangeConfiguration((e) => {

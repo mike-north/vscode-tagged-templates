@@ -17,13 +17,18 @@ function getScriptKindFromLanguageId(languageId: string): ts.ScriptKind {
 	}
 }
 
-export function computeTaggedTemplateRanges(document: vscode.TextDocument): vscode.Range[] {
+export interface TaggedTemplateRange {
+	range: vscode.Range
+	tagName: string
+}
+
+export function computeTaggedTemplateRanges(document: vscode.TextDocument): TaggedTemplateRange[] {
 	const text = document.getText()
 	const kind = getScriptKindFromLanguageId(document.languageId)
 	const sourceFile = ts.createSourceFile(document.fileName, text, ts.ScriptTarget.Latest, false, kind)
 	const allowedTags = getAllowedTags()
 
-	const ranges: vscode.Range[] = []
+	const ranges: TaggedTemplateRange[] = []
 
 	const visit = (node: ts.Node): void => {
 		if (ts.isTaggedTemplateExpression(node)) {
@@ -36,7 +41,10 @@ export function computeTaggedTemplateRanges(document: vscode.TextDocument): vsco
 					if (end > start) {
 						const startPos = document.positionAt(start)
 						const endPos = document.positionAt(end)
-						ranges.push(new vscode.Range(startPos, endPos))
+						ranges.push({
+							range: new vscode.Range(startPos, endPos),
+							tagName: tagName,
+						})
 					}
 				}
 			}

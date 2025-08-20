@@ -2,7 +2,7 @@
 	"name": "vscode-tagged-templates",
 	"displayName": "Tagged Templates",
 	"description": "Syntax highlighting and subtle background tint for curated tagged template literals (json, html, sql, etc.).",
-	"version": "0.0.6",
+	"version": "0.1.0",
 	"publisher": "mike-north",
 	"icon": "media/icon.png",
 	"repository": {
@@ -41,8 +41,8 @@
 		],
 		"colors": [
 			{
-				"id": "taggedTemplates.background",
-				"description": "Background overlay for tagged templates.",
+				"id": "taggedTemplates.json.background",
+				"description": "Background overlay for JSON tagged templates.",
 				"defaults": {
 					"dark": "#FFFFFF0D",
 					"light": "#00000014",
@@ -50,8 +50,341 @@
 				}
 			},
 			{
-				"id": "taggedTemplates.border",
-				"description": "Optional border for tagged templates.",
+				"id": "taggedTemplates.json.border",
+				"description": "Border for JSON tagged templates.",
+				"defaults": {
+					"dark": "#FFFFFF1F",
+					"light": "#00000026",
+					"highContrast": "#FFFFFF80"
+				}
+			},
+			{
+				"id": "taggedTemplates.html.background",
+				"description": "Background overlay for HTML tagged templates.",
+				"defaults": {
+					"dark": "#FF6B350D",
+					"light": "#FF6B3514",
+					"highContrast": "#FF6B3500"
+				}
+			},
+			{
+				"id": "taggedTemplates.html.border",
+				"description": "Border for HTML tagged templates.",
+				"defaults": {
+					"dark": "#FF6B351F",
+					"light": "#FF6B3526",
+					"highContrast": "#FF6B3580"
+				}
+			},
+			{
+				"id": "taggedTemplates.sql.background",
+				"description": "Background overlay for SQL tagged templates.",
+				"defaults": {
+					"dark": "#4FC3F70D",
+					"light": "#4FC3F714",
+					"highContrast": "#4FC3F700"
+				}
+			},
+			{
+				"id": "taggedTemplates.sql.border",
+				"description": "Border for SQL tagged templates.",
+				"defaults": {
+					"dark": "#4FC3F71F",
+					"light": "#4FC3F726",
+					"highContrast": "#4FC3F780"
+				}
+			},
+			{
+				"id": "taggedTemplates.css.background",
+				"description": "Background overlay for CSS tagged templates.",
+				"defaults": {
+					"dark": "#FF98000D",
+					"light": "#FF980014",
+					"highContrast": "#FF980000"
+				}
+			},
+			{
+				"id": "taggedTemplates.css.border",
+				"description": "Border for CSS tagged templates.",
+				"defaults": {
+					"dark": "#FF98001F",
+					"light": "#FF980026",
+					"highContrast": "#FF980080"
+				}
+			},
+			{
+				"id": "taggedTemplates.graphql.background",
+				"description": "Background overlay for GraphQL tagged templates.",
+				"defaults": {
+					"dark": "#E100980D",
+					"light": "#E1009814",
+					"highContrast": "#E1009800"
+				}
+			},
+			{
+				"id": "taggedTemplates.graphql.border",
+				"description": "Border for GraphQL tagged templates.",
+				"defaults": {
+					"dark": "#E100981F",
+					"light": "#E1009826",
+					"highContrast": "#E1009880"
+				}
+			},
+			{
+				"id": "taggedTemplates.yaml.background",
+				"description": "Background overlay for YAML tagged templates.",
+				"defaults": {
+					"dark": "#FFEB3B0D",
+					"light": "#FFEB3B14",
+					"highContrast": "#FFEB3B00"
+				}
+			},
+			{
+				"id": "taggedTemplates.yaml.border",
+				"description": "Border for YAML tagged templates.",
+				"defaults": {
+					"dark": "#FFEB3B1F",
+					"light": "#FFEB3B26",
+					"highContrast": "#FFEB3B80"
+				}
+			},
+			{
+				"id": "taggedTemplates.ts.background",
+				"description": "Background overlay for TypeScript tagged templates.",
+				"defaults": {
+					"dark": "#3178C60D",
+					"light": "#3178C614",
+					"highContrast": "#3178C600"
+				}
+			},
+			{
+				"id": "taggedTemplates.ts.border",
+				"description": "Border for TypeScript tagged templates.",
+				"defaults": {
+					"dark": "#3178C61F",
+					"light": "#3178C626",
+					"highContrast": "#3178C680"
+				}
+			},
+			{
+				"id": "taggedTemplates.shell.background",
+				"description": "Background overlay for Shell tagged templates.",
+				"defaults": {
+					"dark": "#4CAF500D",
+					"light": "#4CAF5014",
+					"highContrast": "#4CAF5000"
+				}
+			},
+			{
+				"id": "taggedTemplates.shell.border",
+				"description": "Border for Shell tagged templates.",
+				"defaults": {
+					"dark": "#4CAF501F",
+					"light": "#4CAF5026",
+					"highContrast": "#4CAF5080"
+				}
+			},
+			{
+				"id": "taggedTemplates.default.background",
+				"description": "Background overlay for other tagged templates.",
+				"defaults": {
+					"dark": "#FFFFFF0D",
+					"light": "#00000014",
+					"highContrast": "#00000000"
+				}
+			},
+			{
+				"id": "taggedTemplates.xml.background",
+				"description": "Background overlay for XML tagged templates.",
+				"defaults": {
+					"dark": "#FF57220D",
+					"light": "#FF572214",
+					"highContrast": "#FF572200"
+				}
+			},
+			{
+				"id": "taggedTemplates.xml.border",
+				"description": "Border for XML tagged templates.",
+				"defaults": {
+					"dark": "#FF57221F",
+					"light": "#FF572226",
+					"highContrast": "#FF572280"
+				}
+			},
+			{
+				"id": "taggedTemplates.java.background",
+				"description": "Background overlay for Java tagged templates.",
+				"defaults": {
+					"dark": "#F443360D",
+					"light": "#F4433614",
+					"highContrast": "#F4433600"
+				}
+			},
+			{
+				"id": "taggedTemplates.java.border",
+				"description": "Border for Java tagged templates.",
+				"defaults": {
+					"dark": "#F443361F",
+					"light": "#F4433626",
+					"highContrast": "#F4433680"
+				}
+			},
+			{
+				"id": "taggedTemplates.ruby.background",
+				"description": "Background overlay for Ruby tagged templates.",
+				"defaults": {
+					"dark": "#CC342D0D",
+					"light": "#CC342D14",
+					"highContrast": "#CC342D00"
+				}
+			},
+			{
+				"id": "taggedTemplates.ruby.border",
+				"description": "Border for Ruby tagged templates.",
+				"defaults": {
+					"dark": "#CC342D1F",
+					"light": "#CC342D26",
+					"highContrast": "#CC342D80"
+				}
+			},
+			{
+				"id": "taggedTemplates.python.background",
+				"description": "Background overlay for Python tagged templates.",
+				"defaults": {
+					"dark": "#3776AB0D",
+					"light": "#3776AB14",
+					"highContrast": "#3776AB00"
+				}
+			},
+			{
+				"id": "taggedTemplates.python.border",
+				"description": "Border for Python tagged templates.",
+				"defaults": {
+					"dark": "#3776AB1F",
+					"light": "#3776AB26",
+					"highContrast": "#3776AB80"
+				}
+			},
+			{
+				"id": "taggedTemplates.php.background",
+				"description": "Background overlay for PHP tagged templates.",
+				"defaults": {
+					"dark": "#777BB40D",
+					"light": "#777BB414",
+					"highContrast": "#777BB400"
+				}
+			},
+			{
+				"id": "taggedTemplates.php.border",
+				"description": "Border for PHP tagged templates.",
+				"defaults": {
+					"dark": "#777BB41F",
+					"light": "#777BB426",
+					"highContrast": "#777BB480"
+				}
+			},
+			{
+				"id": "taggedTemplates.go.background",
+				"description": "Background overlay for Go tagged templates.",
+				"defaults": {
+					"dark": "#00ADD80D",
+					"light": "#00ADD814",
+					"highContrast": "#00ADD800"
+				}
+			},
+			{
+				"id": "taggedTemplates.go.border",
+				"description": "Border for Go tagged templates.",
+				"defaults": {
+					"dark": "#00ADD81F",
+					"light": "#00ADD826",
+					"highContrast": "#00ADD880"
+				}
+			},
+			{
+				"id": "taggedTemplates.csharp.background",
+				"description": "Background overlay for C# tagged templates.",
+				"defaults": {
+					"dark": "#1786000D",
+					"light": "#17860014",
+					"highContrast": "#17860000"
+				}
+			},
+			{
+				"id": "taggedTemplates.csharp.border",
+				"description": "Border for C# tagged templates.",
+				"defaults": {
+					"dark": "#1786001F",
+					"light": "#17860026",
+					"highContrast": "#17860080"
+				}
+			},
+			{
+				"id": "taggedTemplates.markdown.background",
+				"description": "Background overlay for Markdown tagged templates.",
+				"defaults": {
+					"dark": "#0000000D",
+					"light": "#FFFFFF14",
+					"highContrast": "#00000000"
+				}
+			},
+			{
+				"id": "taggedTemplates.markdown.border",
+				"description": "Border for Markdown tagged templates.",
+				"defaults": {
+					"dark": "#0000001F",
+					"light": "#FFFFFF26",
+					"highContrast": "#00000080"
+				}
+			},
+			{
+				"id": "taggedTemplates.gitignore.background",
+				"description": "Background overlay for Gitignore tagged templates.",
+				"defaults": {
+					"dark": "#F050320D",
+					"light": "#F0503214",
+					"highContrast": "#F0503200"
+				}
+			},
+			{
+				"id": "taggedTemplates.gitignore.border",
+				"description": "Border for Gitignore tagged templates.",
+				"defaults": {
+					"dark": "#F050321F",
+					"light": "#F0503226",
+					"highContrast": "#F0503280"
+				}
+			},
+			{
+				"id": "taggedTemplates.env.background",
+				"description": "Background overlay for Environment variable tagged templates.",
+				"defaults": {
+					"dark": "#7955480D",
+					"light": "#79554814",
+					"highContrast": "#79554800"
+				}
+			},
+			{
+				"id": "taggedTemplates.env.border",
+				"description": "Border for Environment variable tagged templates.",
+				"defaults": {
+					"dark": "#7955481F",
+					"light": "#79554826",
+					"highContrast": "#79554880"
+				}
+			},
+			{
+				"id": "taggedTemplates.default.background",
+				"description": "Background overlay for other tagged templates.",
+				"defaults": {
+					"dark": "#FFFFFF0D",
+					"light": "#00000014",
+					"highContrast": "#00000000"
+				}
+			},
+			{
+				"id": "taggedTemplates.default.border",
+				"description": "Border for other tagged templates.",
 				"defaults": {
 					"dark": "#FFFFFF1F",
 					"light": "#00000026",
