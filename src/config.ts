@@ -47,3 +47,44 @@ export function isExtensionEnabled(): boolean {
 	const cfg = vscode.workspace.getConfiguration('taggedTemplates')
 	return cfg.get<boolean>('enabled', true)
 }
+
+// Map tag names to their color theme keys
+const tagToColorMap: Record<string, string> = {
+	// Core languages with dedicated colors
+	json: 'json',
+	html: 'html',
+	css: 'css',
+	scss: 'css', // Use CSS colors for SCSS
+	sql: 'sql',
+	graphql: 'graphql',
+	gql: 'graphql', // Use GraphQL colors for gql
+	yaml: 'yaml',
+	yml: 'yaml', // Use YAML colors for yml
+	ts: 'ts',
+	typescript: 'ts', // Use TS colors for typescript
+	sh: 'shell',
+	bash: 'shell', // Use shell colors for bash
+
+	// Additional languages that could benefit from distinct colors
+	xml: 'xml',
+	java: 'java',
+	ruby: 'ruby',
+	rb: 'ruby', // Use Ruby colors for rb
+	python: 'python',
+	py: 'python', // Use Python colors for py
+	php: 'php',
+	go: 'go',
+	golang: 'go', // Use Go colors for golang
+	csharp: 'csharp',
+	cs: 'csharp', // Use C# colors for cs
+	md: 'markdown',
+	markdown: 'markdown',
+	gitignore: 'gitignore',
+	ignore: 'gitignore', // Use gitignore colors for ignore
+	env: 'env',
+	dotenv: 'env', // Use env colors for dotenv
+}
+
+export function getTagColorKey(tagName: string): string {
+	return tagToColorMap[tagName] || 'default'
+}
