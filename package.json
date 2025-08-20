@@ -120,7 +120,15 @@
 		"changeset": "changeset",
 		"version": "changeset version",
 		"release": "pnpm run build && changeset publish",
-		"release:manual": "pnpm run build && pnpm exec vsce publish"
+		"release:manual": "pnpm run build && pnpm exec vsce publish",
+		"prepare": "husky",
+		"lint-staged": "lint-staged"
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,json,md}": [
+			"prettier --write",
+			"eslint --fix"
+		]
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.29.6",

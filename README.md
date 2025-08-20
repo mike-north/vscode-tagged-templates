@@ -205,7 +205,7 @@ For backward compatibility, you can still use the old global colors (they will a
 
 ### Prerequisites
 
-- Node.js 20+ 
+- Node.js 20+
 - pnpm
 
 ### Setup
@@ -222,7 +222,18 @@ pnpm run test       # Run tests
 pnpm run lint       # Run ESLint
 pnpm run format     # Format code with Prettier
 pnpm run package    # Package extension as .vsix
+pnpm lint-staged    # Run lint-staged (auto-formats staged files)
 ```
+
+### Pre-commit Hooks
+
+This project uses [Husky](https://typicode.github.io/husky/) with pre-commit hooks to ensure code quality:
+
+- **Auto-formatting**: All staged files are automatically formatted with Prettier
+- **Linting**: ESLint automatically fixes issues in staged files
+- **Supported files**: `.js`, `.jsx`, `.ts`, `.tsx`, `.json`, `.md`
+
+The hooks run automatically when you commit. If formatting or linting fails, the commit will be blocked until issues are resolved.
 
 ### Versioning and Releases
 
