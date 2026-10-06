@@ -1,6 +1,6 @@
 {
 	"scopeName": "tagged.templates.injection",
-	"injectionSelector": "L:source.ts, L:source.tsx, L:source.js, L:source.jsx",
+	"injectionSelector": "L:source.ts -comment -string.quoted -string.regexp -meta.embedded.block, L:source.tsx -comment -string.quoted -string.regexp -meta.embedded.block, L:source.js -comment -string.quoted -string.regexp -meta.embedded.block, L:source.jsx -comment -string.quoted -string.regexp -meta.embedded.block",
 	"patterns": [
 		{ "include": "#tag-json" },
 		{ "include": "#tag-html" },
@@ -31,7 +31,8 @@
 		{ "include": "#tag-md" },
 		{ "include": "#tag-gitignore" },
 		{ "include": "#tag-env" },
-		{ "include": "#tag-sh" }
+		{ "include": "#tag-sh" },
+		{ "include": "#plain-template" }
 	],
 	"repository": {
 		"interpolation": {
@@ -50,7 +51,7 @@
 
 		"tag-json": {
 			"name": "meta.embedded.block.json.tagged",
-			"begin": "(?<=\\bjson)\\s*`",
+			"begin": "\\b(json)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.json.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.json" }]
@@ -58,7 +59,7 @@
 
 		"tag-html": {
 			"name": "meta.embedded.block.html.tagged",
-			"begin": "(?<=\\bhtml)\\s*`",
+			"begin": "\\b(html)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -66,7 +67,7 @@
 
 		"tag-css": {
 			"name": "meta.embedded.block.css.tagged",
-			"begin": "(?<=\\bcss)\\s*`",
+			"begin": "\\b(css)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.css.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.css" }]
@@ -74,7 +75,7 @@
 
 		"tag-scss": {
 			"name": "meta.embedded.block.scss.tagged",
-			"begin": "(?<=\\bscss)\\s*`",
+			"begin": "\\b(scss)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.scss.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.scss" }]
@@ -82,7 +83,7 @@
 
 		"tag-sql": {
 			"name": "meta.embedded.block.sql.tagged",
-			"begin": "(?<=\\bsql)\\s*`",
+			"begin": "\\b(sql)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.sql.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.sql" }]
@@ -90,7 +91,7 @@
 
 		"tag-graphql": {
 			"name": "meta.embedded.block.graphql.tagged",
-			"begin": "(?<=\\b(?:graphql|gql))\\s*`",
+			"begin": "\\b((?:graphql|gql))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.graphql.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.graphql" }]
@@ -98,7 +99,7 @@
 
 		"tag-yaml": {
 			"name": "meta.embedded.block.yaml.tagged",
-			"begin": "(?<=\\b(?:yaml|yml))\\s*`",
+			"begin": "\\b((?:yaml|yml))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.yaml.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.yaml" }]
@@ -106,7 +107,7 @@
 
 		"tag-xml": {
 			"name": "meta.embedded.block.xml.tagged",
-			"begin": "(?<=\\bxml)\\s*`",
+			"begin": "\\b(xml)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.xml.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.xml" }]
@@ -114,7 +115,7 @@
 
 		"tag-ts": {
 			"name": "meta.embedded.block.ts.tagged",
-			"begin": "(?<=\\b(?:ts|typescript))\\s*`",
+			"begin": "\\b((?:ts|typescript))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.ts.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.ts" }]
@@ -122,7 +123,7 @@
 
 		"tag-sh": {
 			"name": "meta.embedded.block.shell.tagged",
-			"begin": "(?<=\\b(?:sh|bash))\\s*`",
+			"begin": "\\b(?:sh|bash)\\s*`|\\bBun\\.\\$\\s*`|(?<![\\w$])\\$\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.shell.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.shell" }]
@@ -130,7 +131,7 @@
 
 		"tag-java": {
 			"name": "meta.embedded.block.java.tagged",
-			"begin": "(?<=\\bjava)\\s*`",
+			"begin": "\\b(java)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.java.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.java" }]
@@ -138,7 +139,7 @@
 
 		"tag-ruby": {
 			"name": "meta.embedded.block.ruby.tagged",
-			"begin": "(?<=\\b(?:ruby|rb))\\s*`",
+			"begin": "\\b((?:ruby|rb))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.ruby.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.ruby" }]
@@ -146,7 +147,7 @@
 
 		"tag-python": {
 			"name": "meta.embedded.block.python.tagged",
-			"begin": "(?<=\\b(?:python|py))\\s*`",
+			"begin": "\\b((?:python|py))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.python.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.python" }]
@@ -154,7 +155,7 @@
 
 		"tag-php": {
 			"name": "meta.embedded.block.php.tagged",
-			"begin": "(?<=\\bphp)\\s*`",
+			"begin": "\\b(php)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.php.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.php" }]
@@ -162,7 +163,7 @@
 
 		"tag-go": {
 			"name": "meta.embedded.block.go.tagged",
-			"begin": "(?<=\\b(?:go|golang))\\s*`",
+			"begin": "\\b((?:go|golang))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.go.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.go" }]
@@ -170,7 +171,7 @@
 
 		"tag-csharp": {
 			"name": "meta.embedded.block.csharp.tagged",
-			"begin": "(?<=\\b(?:csharp|cs))\\s*`",
+			"begin": "\\b((?:csharp|cs))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.cs.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.cs" }]
@@ -178,7 +179,7 @@
 
 		"tag-erb": {
 			"name": "meta.embedded.block.erb.tagged",
-			"begin": "(?<=\\berb)\\s*`",
+			"begin": "\\b(erb)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -186,7 +187,7 @@
 
 		"tag-ejs": {
 			"name": "meta.embedded.block.ejs.tagged",
-			"begin": "(?<=\\bejs)\\s*`",
+			"begin": "\\b(ejs)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -194,7 +195,7 @@
 
 		"tag-handlebars": {
 			"name": "meta.embedded.block.handlebars.tagged",
-			"begin": "(?<=\\b(?:handlebars|hbs))\\s*`",
+			"begin": "\\b((?:handlebars|hbs))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -202,7 +203,7 @@
 
 		"tag-mustache": {
 			"name": "meta.embedded.block.mustache.tagged",
-			"begin": "(?<=\\bmustache)\\s*`",
+			"begin": "\\b(mustache)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -210,7 +211,7 @@
 
 		"tag-pug": {
 			"name": "meta.embedded.block.pug.tagged",
-			"begin": "(?<=\\b(?:pug|jade))\\s*`",
+			"begin": "\\b((?:pug|jade))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -218,7 +219,7 @@
 
 		"tag-twig": {
 			"name": "meta.embedded.block.twig.tagged",
-			"begin": "(?<=\\btwig)\\s*`",
+			"begin": "\\b(twig)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -226,7 +227,7 @@
 
 		"tag-liquid": {
 			"name": "meta.embedded.block.liquid.tagged",
-			"begin": "(?<=\\bliquid)\\s*`",
+			"begin": "\\b(liquid)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -234,7 +235,7 @@
 
 		"tag-slim": {
 			"name": "meta.embedded.block.slim.tagged",
-			"begin": "(?<=\\bslim)\\s*`",
+			"begin": "\\b(slim)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -242,7 +243,7 @@
 
 		"tag-haml": {
 			"name": "meta.embedded.block.haml.tagged",
-			"begin": "(?<=\\bhaml)\\s*`",
+			"begin": "\\b(haml)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -250,7 +251,7 @@
 
 		"tag-jinja": {
 			"name": "meta.embedded.block.jinja.tagged",
-			"begin": "(?<=\\b(?:jinja|jinja2|njk|nunjucks))\\s*`",
+			"begin": "\\b((?:jinja|jinja2|njk|nunjucks))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.basic.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.basic" }]
@@ -258,7 +259,7 @@
 
 		"tag-gemfile": {
 			"name": "meta.embedded.block.gemfile.tagged",
-			"begin": "(?<=\\bgemfile)\\s*`",
+			"begin": "\\b(gemfile)\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.ruby.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.ruby" }]
@@ -266,15 +267,27 @@
 
 		"tag-md": {
 			"name": "meta.embedded.block.markdown.tagged",
-			"begin": "(?<=\\b(?:md|markdown))\\s*`",
+			"begin": "\\b((?:md|markdown))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "text.html.markdown.embedded",
-			"patterns": [{ "include": "#interpolation" }, { "include": "text.html.markdown" }]
+			"patterns": [
+				{ "include": "#interpolation" },
+				{ "include": "text.html.markdown#frontMatter" },
+				{ "include": "text.html.markdown#separator" },
+				{ "include": "text.html.markdown#heading" },
+				{ "include": "text.html.markdown#blockquote" },
+				{ "include": "text.html.markdown#lists" },
+				{ "include": "text.html.markdown#fenced_code_block" },
+				{ "include": "text.html.markdown#link-def" },
+				{ "include": "text.html.markdown#html" },
+				{ "include": "text.html.markdown#table" },
+				{ "include": "text.html.markdown#paragraph" }
+			]
 		},
 
 		"tag-gitignore": {
 			"name": "meta.embedded.block.gitignore.tagged",
-			"begin": "(?<=\\b(?:gitignore|ignore))\\s*`",
+			"begin": "\\b((?:gitignore|ignore))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.gitignore.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.gitignore" }]
@@ -282,10 +295,45 @@
 
 		"tag-env": {
 			"name": "meta.embedded.block.env.tagged",
-			"begin": "(?<=\\b(?:env|dotenv))\\s*`",
+			"begin": "\\b((?:env|dotenv))\\s*`",
 			"end": "(?<!\\\\)`",
 			"contentName": "source.dotenv.embedded",
 			"patterns": [{ "include": "#interpolation" }, { "include": "source.dotenv" }]
+		},
+
+		"plain-template": {
+			"name": "meta.embedded.block.plain.tagged",
+			"begin": "((?:[A-Za-z_$][\\w$]*(?:\\.[A-Za-z_$][\\w$]*)*)?\\s*)(`)",
+			"beginCaptures": {
+				"1": {
+					"patterns": [
+						{ "include": "source.ts" },
+						{ "include": "source.tsx" },
+						{ "include": "source.js" },
+						{ "include": "source.jsx" }
+					]
+				},
+				"2": { "name": "string.template.ts punctuation.definition.string.template.begin.ts" }
+			},
+			"end": "(?<!\\\\)`",
+			"endCaptures": { "0": { "name": "string.template.ts punctuation.definition.string.template.end.ts" } },
+			"contentName": "string.template.ts",
+			"patterns": [{ "include": "#plain-interpolation" }]
+		},
+
+		"plain-interpolation": {
+			"name": "meta.template.expression.ts",
+			"begin": "\\$\\{",
+			"beginCaptures": { "0": { "name": "punctuation.definition.template-expression.begin.ts" } },
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.definition.template-expression.end.ts" } },
+			"contentName": "meta.embedded.line.ts",
+			"patterns": [
+				{ "include": "source.ts" },
+				{ "include": "source.tsx" },
+				{ "include": "source.js" },
+				{ "include": "source.jsx" }
+			]
 		}
 	}
 }
